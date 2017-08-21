@@ -1,6 +1,33 @@
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
+
+[MAIN]: ./imgs/main_pic.png
+
+
+[![IMAGE ALT TEXT](./imgs/main_pic.png)](https://youtu.be/L5kRwnGOi8A "PID video")
+**Click on the image to go to the youtube video**
+
+
+---
+
+## Reflection
+
+For this project a PID controller is used to steer the car based on the cross track error (CTE).
+
+A PID controller has three components:
+
+`P` (Proportional): this error is linear with the cross track error. The effect of a low value in this component can cause the car to never reach the set point or even to completely drift away the desired path, on the other hand, a high value will make the system unstable
+
+`I` (Integral): this components adds up the past CTE to ensure that the setpoint is reached. A low value will help reduce the steady state error but a high value will create oscillations and even make the system unstable
+
+`D` (Derivative): this component reacts to the rate of change of the CTE. An adequated value will reduce oscillations and speed up the time that it takes to reach the set point. The problem with this component is that it will be heavily affected by the pressence of noise in the measurements.
+
+In order to tune the parameters I did it manually. I started with all the parameters equal to 0. Then, I increased the value of `P` until the vehicle responded appropriately. After this, I increased the vuale of `I` to remove the steady state error (mainly in the straight sections of the circuit). Next, I found out an adequate value for `D` that removed most of the oscillations, making the driving much smoother. Finally, I did some more tweaking around the initial values to achieve a better performance.
+
+Tuning PIDs is both art and science, there are algos like Twiddle that can help and we could even model the system plant to design a better suited controller but in a problem like driving, sometimes it is necessary to set some boundaries (maybe some steady state error is acceptable, but overshoot is not) that are very difficult to take into accounnt with this kind of simple controller.
+
+
 ---
 
 ## Dependencies
@@ -19,7 +46,7 @@ Self-Driving Car Engineer Nanodegree Program
   * Run either `./install-mac.sh` or `./install-ubuntu.sh`.
   * If you install from source, checkout to commit `e94b6e1`, i.e.
     ```
-    git clone https://github.com/uWebSockets/uWebSockets 
+    git clone https://github.com/uWebSockets/uWebSockets
     cd uWebSockets
     git checkout e94b6e1
     ```
@@ -33,7 +60,7 @@ There's an experimental patch for windows in this [PR](https://github.com/udacit
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./pid`. 
+4. Run it: `./pid`.
 
 ## Editor Settings
 

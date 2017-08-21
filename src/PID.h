@@ -1,6 +1,8 @@
 #ifndef PID_H
 #define PID_H
 
+#include <vector>
+#define NUM_INTEGRATOR_ERROR_STEPS 150
 class PID {
 public:
   /*
@@ -9,6 +11,10 @@ public:
   double p_error;
   double i_error;
   double d_error;
+
+  //std::vector <double> i_error_v[];
+  double i_error_v[NUM_INTEGRATOR_ERROR_STEPS];
+  int num_steps;
 
   /*
   * Coefficients
