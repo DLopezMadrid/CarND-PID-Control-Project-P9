@@ -25,7 +25,10 @@ A PID controller has three components:
 
 In order to tune the parameters I did it manually. I started with all the parameters equal to 0. Then, I increased the value of `P` until the vehicle responded appropriately. After this, I increased the vuale of `I` to remove the steady state error (mainly in the straight sections of the circuit). Next, I found out an adequate value for `D` that removed most of the oscillations, making the driving much smoother. Finally, I did some more tweaking around the initial values to achieve a better performance.
 
+I also added a buffer to the `I` component to avoid old errors having too much influence in the current status of the car
+
 Tuning PIDs is both art and science, there are algos like Twiddle that can help and we could even model the system plant to design a better suited controller but in a problem like driving, sometimes it is necessary to set some boundaries (maybe some steady state error is acceptable, but overshoot is not) that are very difficult to take into accounnt with this kind of simple controller.
+
 
 
 ---
